@@ -2,3 +2,15 @@
     display: flex;
     flex-basis: 63%;
 }
+
+@media screen and (max-width: 890px) {
+    .profile__info {
+        flex-basis: 55%;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .profile__info {
+        margin: 0 0 36px;
+    }
+}

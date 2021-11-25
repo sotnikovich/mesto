@@ -20,4 +20,13 @@
 
 /*elements*/
 
+@import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
+@import url(../blocks/element/__signature/element__signature.css);
+@import url(../blocks/element/__img/element__img.css);
+@import url(../blocks/element/__caption/element__caption.css);
+@import url(../blocks/element/__like/element__like.css);
+
+/*footer*/
+
+@import url(../blocks/footer/footer.css);

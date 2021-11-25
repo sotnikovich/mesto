@@ -6,3 +6,9 @@
     box-sizing: border-box;
     border-radius: 2px;
 }
+
+@media screen and (max-width: 680px) {
+    .profile__add-button {
+        width: 100%;
+    }
+}

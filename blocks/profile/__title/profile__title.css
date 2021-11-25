@@ -6,3 +6,18 @@
     color: #FFFFFF;
     margin: 0 0 16px;
 }
+
+@media screen and (max-width: 680px) {
+    .profile__title {
+        margin: 22.25px 0 14px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .profile__title {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 27px;
+        line-height: 33px;
+    }
+}
