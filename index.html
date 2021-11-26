@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Mesto</title>
     <link rel="stylesheet" href="pages/index.css">
 </head>
 
-<body class="root">
+<body class="root hidden">
     <div class="page">
         <header class="header">
             <img class="header__logo" src="images/logo.svg" alt="логотип">
@@ -21,7 +22,7 @@
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
                         <h2 class="profile__subtitle">Исследователь океана</h2>
                     </div>
-                    <button class="profile__edit-button"></button>
+                    <button class="profile__edit-button js-profile__edit-button"></button>
                 </div>
                 <button class="profile__add-button"></button>
             </section>
@@ -69,12 +70,21 @@
                     </div>
                 </figure>
             </section>
+            <section class="modal">
+                <div class="modal__inner">
+                    <a href="#" class="modal__close-btn"></a>
+                    <h2 class="modal__title">Редактировать профиль</h2>
+                    <p class="modal__cont js-name">Жак-Ив Кусто</p>
+                    <p class="modal__cont js-job">Исследователь океана</p>
+                    <button class="modal__submit">Сохранить</button>
+                </div>
+            </section>
         </main>
         <footer class="footer">
-            © 2020 Mesto Russia
+            © 2021 Mesto Russia
         </footer>
     </div>
-
+    <script src="scripts/scripts.js"></script>
 </body>
 
 </html>

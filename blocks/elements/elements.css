@@ -8,6 +8,7 @@
 
 @media screen and (max-width: 425px) {
     .elements {
-        margin: 0 auto 48px;
+        margin: 0 auto 50px;
+        row-gap: 17px;
     }
 }
