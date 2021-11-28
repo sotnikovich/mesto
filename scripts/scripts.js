@@ -2,6 +2,10 @@ const edit = document.querySelector('.js-profile__edit-button');
 const modal = document.querySelector('.modal');
 const closeBtn = document.querySelector('.modal__close-btn');
 const modalInner = document.querySelector('.modal__inner');
+let nameInput = document.querySelector('.js-name');
+let jobInput = document.querySelector('.js-job');
+let newName = document.querySelector('.profile__title');
+let newJob = document.querySelector('.profile__subtitle');
 
 function openModal() {
     modal.classList.add('modal_active');
@@ -19,20 +23,15 @@ function overlayClick(e) {
     }
 }
 
+function formSubmitHandler(evt) {
+    evt.preventDefault();
+    newName.textContent = nameInput.value;
+    newJob.textContent = jobInput.value;
+    closeModal();
+}
+
+
 edit.addEventListener('click', openModal);
 closeBtn.addEventListener('click', closeModal);
 modal.addEventListener('click', overlayClick);
-
-let formElement = document.querySelector('.modal__inner');
-let nameInput = document.querySelector('js-name');
-let jobInput = document.querySelector('js-job');
-
-function formSubmitHandler(evt) {
-    evt.preventDefault();
-
-    nameInput.value = value;
-    jobInput.value = value;
-
-}
-
-formElement.addEventListener('submit', formSubmitHandler);
+modalInner.addEventListener('submit', formSubmitHandler);
