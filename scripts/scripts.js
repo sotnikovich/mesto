@@ -1,4 +1,4 @@
-const edit = document.querySelector('.js-profile__edit-button');
+const edit = document.querySelector('.profile__edit-button');
 const modal = document.querySelector('.modal');
 const closeBtn = document.querySelector('.modal__close-btn');
 const modalInner = document.querySelector('.modal__inner');
