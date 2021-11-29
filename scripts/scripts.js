@@ -2,6 +2,7 @@ const edit = document.querySelector('.js-profile__edit-button');
 const modal = document.querySelector('.modal');
 const closeBtn = document.querySelector('.modal__close-btn');
 const modalInner = document.querySelector('.modal__inner');
+
 let nameInput = document.querySelector('.js-name');
 let jobInput = document.querySelector('.js-job');
 let newName = document.querySelector('.profile__title');
@@ -30,6 +31,18 @@ function formSubmitHandler(evt) {
     closeModal();
 }
 
+let like = document.querySelector('.element__like');
+let likes = document.querySelectorAll('.element__like');
+
+[].forEach.call(likes, function(item) {
+    item.addEventListener('click', function() {
+        if (item.classList.contains('element__like_active')) {
+            item.classList.remove('element__like_active');
+        } else {
+            item.classList.add('element__like_active');
+        }
+    });
+});
 
 edit.addEventListener('click', openModal);
 closeBtn.addEventListener('click', closeModal);
