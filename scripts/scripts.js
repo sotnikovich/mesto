@@ -11,6 +11,7 @@ let newJob = document.querySelector('.profile__subtitle');
 function openModal() {
     modal.classList.add('modal_active');
     document.body.classList.add('hidden');
+    modalInner.classList.add('fade-in');
 }
 
 function closeModal() {
@@ -30,19 +31,6 @@ function formSubmitHandler(evt) {
     newJob.textContent = jobInput.value;
     closeModal();
 }
-
-let like = document.querySelector('.element__like');
-let likes = document.querySelectorAll('.element__like');
-
-[].forEach.call(likes, function(item) {
-    item.addEventListener('click', function() {
-        if (item.classList.contains('element__like_active')) {
-            item.classList.remove('element__like_active');
-        } else {
-            item.classList.add('element__like_active');
-        }
-    });
-});
 
 edit.addEventListener('click', openModal);
 closeBtn.addEventListener('click', closeModal);

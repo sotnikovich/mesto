@@ -1,3 +1,15 @@
 .modal__input {
     border: 0;
+    width: 358px;
+}
+
+.modal__input:focus {
+    padding: 5px;
+    border: 2px solid #2b50ad;
+}
+
+@media screen and (max-width: 425px) {
+    .modal__input {
+        width: 238px;
+    }
 }

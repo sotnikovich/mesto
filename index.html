@@ -12,7 +12,7 @@
 <body class="root">
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="images/logo.svg" alt="логотип">
+            <img class="header__logo" src="images/logo.svg" alt="Логотип">
         </header>
         <main class="content">
             <section class="profile">
@@ -22,61 +22,61 @@
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
                         <h2 class="profile__subtitle">Исследователь океана</h2>
                     </div>
-                    <button class="profile__edit-button"></button>
+                    <button class="profile__edit-button" type="button"></button>
                 </div>
-                <button class="profile__add-button"></button>
+                <button class="profile__add-button" type="button"></button>
             </section>
             <section class="elements">
                 <div class="element">
                     <img src="images/karachaevsk.jpg" alt="шикарный вид Карачаевска" class="element__img">
                     <div class="element__signature">
                         <p class="element__caption">Карачаевск</p>
-                        <img src="images/like.svg" alt="здесь должен быть твой лайк" class="element__like">
+                        <button class="element__like scale" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="images/elbrus.jpg" alt="Эльбрус в закате" class="element__img">
                     <div class="element__signature">
                         <p class="element__caption">Гора Эльбрус</p>
-                        <img src="images/like.svg" alt="здесь должен быть твой лайк" class="element__like">
+                        <button class="element__like" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="images/dombai.jpg" alt="одинокая гора Домбай" class="element__img">
                     <div class="element__signature">
                         <p class="element__caption">Домбай</p>
-                        <img src="images/like.svg" alt="здесь должен быть твой лайк" class="element__like">
+                        <button class="element__like" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="images/elbrus.jpg" alt="Эльбрус в закате" class="element__img">
                     <div class="element__signature">
                         <p class="element__caption">Гора Эльбрус</p>
-                        <img src="images/like.svg" alt="здесь должен быть твой лайк" class="element__like">
+                        <button class="element__like" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="images/dombai.jpg" alt="одинокая гора Домбай" class="element__img">
                     <div class="element__signature">
                         <p class="element__caption">Домбай</p>
-                        <img src="images/like.svg" alt="здесь должен быть твой лайк" class="element__like">
+                        <button class="element__like" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="images/karachaevsk.jpg" alt="шикарный вид Карачаевска" class="element__img">
                     <div class="element__signature">
                         <p class="element__caption">Карачаево-Черкесия</p>
-                        <img src="images/like.svg" alt="здесь должен быть твой лайк" class="element__like">
+                        <button class="element__like" type="button"></button>
                     </div>
                 </div>
             </section>
             <section class="modal">
-                <form class="modal__inner">
-                    <a href="#" class="modal__close-btn"></a>
+                <form class="modal__inner fade-in">
+                    <button class="modal__close-btn" type="button"></button>
                     <h2 class="modal__title">Редактировать профиль</h2>
                     <p class="modal__cont"><input class="modal__input js-name" value="Жак-Ив Кусто"></p>
                     <p class="modal__cont"><input class="modal__input js-job" value="Исследователь океана"></p>
-                    <button class="modal__submit">Сохранить</button>
+                    <button class="modal__submit" type="submit">Сохранить</button>
                 </form>
             </section>
         </main>
@@ -85,6 +85,7 @@
         </footer>
     </div>
     <script src="scripts/scripts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </body>
 
 </html>
