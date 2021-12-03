@@ -22,7 +22,6 @@ function formSubmitHandler(evt) { //заполнение профиля
     evt.preventDefault();
     newName.textContent = nameInput.value;
     newJob.textContent = jobInput.value;
-    save.contains(evt.target);
     closeModal();
 }
 
