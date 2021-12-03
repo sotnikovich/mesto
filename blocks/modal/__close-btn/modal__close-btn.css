@@ -15,7 +15,10 @@
 
 @media screen and (max-width: 530px) {
     .modal__close-btn {
-        top: -49px;
-        right: 2px;
+        top: -37px;
+        right: 0px;
+        background: url(../../../images/close-320.svg);
+        width: 20px;
+        height: 20px;
     }
 }

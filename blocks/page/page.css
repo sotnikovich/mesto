@@ -26,3 +26,9 @@
         width: 88.13%;
     }
 }
+
+@media screen and (max-width: 425px) {
+    .page {
+        width: 100%;
+    }
+}

@@ -10,5 +10,6 @@
     .elements {
         margin: 0 auto 50px;
         row-gap: 17px;
+        width: 88.13%;
     }
 }

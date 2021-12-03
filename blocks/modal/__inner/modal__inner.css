@@ -1,6 +1,5 @@
 .modal__inner {
     width: 430px;
-    min-height: 330px;
     margin: 0 auto;
     background: #FFFFFF;
     padding: 34px 36px 37px;
@@ -14,6 +13,5 @@
     .modal__inner {
         max-width: 282px;
         padding: 25px 22px;
-        min-height: 322px;
     }
 }
