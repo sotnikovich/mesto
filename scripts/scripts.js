@@ -2,7 +2,6 @@ const edit = document.querySelector('.profile__edit-button');
 const modal = document.querySelector('.modal');
 const closeBtn = document.querySelector('.modal__close-btn');
 const popup = document.querySelector('.modal__profile');
-const save = document.querySelector('.modal__submit');
 let nameInput = document.querySelector('.modal__input_type_name');
 let jobInput = document.querySelector('.modal__input_type_job');
 let newName = document.querySelector('.profile__title');
