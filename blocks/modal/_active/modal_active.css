@@ -1,3 +1,18 @@
+@keyframes opacity {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0%;
+    }
+}
+
+.opacity {
+    animation: 0.3s linear;
+}
+
 .modal_active {
     display: flex;
+    visibility: visible;
+    opacity: 1;
 }
