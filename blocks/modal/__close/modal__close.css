@@ -1,4 +1,4 @@
-.modal__close-btn {
+.modal__close {
     background: url(../../../images/close.svg);
     width: 32px;
     height: 32px;
@@ -9,12 +9,12 @@
     border: 0;
 }
 
-.modal__close-btn:hover {
+.modal__close:hover {
     opacity: 0.6;
 }
 
 @media screen and (max-width: 530px) {
-    .modal__close-btn {
+    .modal__close {
         top: -37px;
         right: 0px;
         background: url(../../../images/close-320.svg);

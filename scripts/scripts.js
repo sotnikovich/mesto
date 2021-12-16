@@ -1,3 +1,4 @@
+const popup = document.querySelectorAll('.modal');
 const edit = document.querySelector('.profile__edit-button');
 const editModal = document.querySelector('.modal-edit');
 
@@ -5,7 +6,7 @@ const closeEdit = document.querySelector('.modal__close_type_edit');
 const closeAddBtn = document.querySelector('.modal__close_type_add');
 const closeImg = document.querySelector('.modal__close_type_img');
 
-const popup = document.querySelector('.modal__profile');
+const profile = document.querySelector('.modal__profile');
 const add = document.querySelector('.profile__add-button');
 const addModal = document.querySelector('.modal-add');
 
@@ -19,7 +20,6 @@ const templateElement = document.querySelector('.template__element').content;
 const elements = document.querySelector('.elements');
 
 const imgPopup = document.querySelector('.modal-img');
-
 
 function openModal() { //открытие формы редактора
     editModal.classList.add('modal_active');
@@ -55,7 +55,7 @@ add.addEventListener('click', openAdd);
 closeEdit.addEventListener('click', closeModal);
 closeAddBtn.addEventListener('click', closeAdd);
 closeImg.addEventListener('click', closeImage);
-popup.addEventListener('submit', formSubmitHandler);
+profile.addEventListener('submit', formSubmitHandler);
 
 const initialCards = [{
         name: 'Архыз',
@@ -83,7 +83,6 @@ const initialCards = [{
     }
 ];
 
-
 initialCards.forEach(function(element) {
     const cardElement = templateElement.cloneNode(true);
     cardElement.querySelector('.element__caption').textContent = element.name;
@@ -97,12 +96,10 @@ initialCards.forEach(function(element) {
             e.currentTarget.closest('.element').remove()
         })
     })
-
 });
 
 const captionModal = document.querySelector('.modal__caption');
 const imageModal = document.querySelector('.modal__img');
-
 const openImg = (event) => {
     imgPopup.classList.add('modal_active');
     imageModal.src = event.target.src;
