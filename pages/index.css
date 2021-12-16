@@ -39,6 +39,13 @@
 @import url(../blocks/modal/__submit/modal__submit.css);
 @import url(../blocks/modal/__close-btn/modal__close-btn.css);
 @import url(../blocks/modal/__input/modal__input.css);
+@import url(../blocks/modal/__img/modal__img.css);
+@import url(../blocks/modal/__caption/modal__caption.css);
+
+/*modal-img*/
+
+@import url(../blocks/modal-img/modal-img.css);
+@import url(../blocks/modal-img/__container/modal-img__container.css);
 
 /*footer*/
 
