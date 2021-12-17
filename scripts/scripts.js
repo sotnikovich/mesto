@@ -1,61 +1,78 @@
 const popup = document.querySelectorAll('.modal');
-const edit = document.querySelector('.profile__edit-button');
-const editModal = document.querySelector('.modal-edit');
 
-const closeEdit = document.querySelector('.modal__close_type_edit');
+const editModal = document.querySelector('.modal-edit');
+const addModal = document.querySelector('.modal-add');
+const imgPopup = document.querySelector('.modal-img');
+
+const editBtn = document.querySelector('.profile__edit-button');
+const addBtn = document.querySelector('.profile__add-button');
+
+const closeEditBtn = document.querySelector('.modal__close_type_edit');
 const closeAddBtn = document.querySelector('.modal__close_type_add');
-const closeImg = document.querySelector('.modal__close_type_img');
+const closeImgBtn = document.querySelector('.modal__close_type_img');
 
 const profile = document.querySelector('.modal__profile');
-const add = document.querySelector('.profile__add-button');
-const addModal = document.querySelector('.modal-add');
-
 const nameInput = document.querySelector('.modal__input_type_name');
 const jobInput = document.querySelector('.modal__input_type_job');
 const placeInput = document.querySelector('.modal__input_type_title');
 const imgInput = document.querySelector('.modal__input_type_link');
+const captionModal = document.querySelector('.modal__caption');
+const imageModal = document.querySelector('.modal__img');
+
 const newName = document.querySelector('.profile__title');
 const newJob = document.querySelector('.profile__subtitle');
 const templateElement = document.querySelector('.template__element').content;
 const elements = document.querySelector('.elements');
 
-const imgPopup = document.querySelector('.modal-img');
+function openPopup(popup) {
+    popup.classList.add('modal_active');
+}
 
-function openModal() { //открытие формы редактора
-    editModal.classList.add('modal_active');
+function closePopup(popup) {
+    popup.classList.remove('modal_active');
+}
+
+editBtn.addEventListener('click', (e) => {
     nameInput.value = newName.textContent;
     jobInput.value = newJob.textContent;
+    openPopup(editModal);
+})
+
+closeEditBtn.addEventListener('click', (e) => {
+    closePopup(editModal);
+})
+
+addBtn.addEventListener('click', (e) => {
+    openPopup(addModal);
+})
+
+closeAddBtn.addEventListener('click', (e) => {
+    closePopup(addModal);
+})
+
+const openImg = (e) => {
+    imgPopup.classList.add('modal_active');
+    imageModal.src = e.target.src;
+    captionModal.textContent = e.target.alt;
 }
 
-function closeModal() { //закрытие формы редактора
-    editModal.classList.remove('modal_active');
-}
+const cards = document.querySelectorAll('.element__img');
+cards.forEach(card => {
+    card.addEventListener('click', openImg);
+})
 
-function openAdd() { //открытие формы добавить
-    addModal.classList.add('modal_active');
-}
+closeImgBtn.addEventListener('click', (e) => {
+    closePopup(imgPopup);
+})
 
-function closeAdd() { //закрытие формы добавить
-    addModal.classList.remove('modal_active');
-}
-
-function closeImage() {
-    imgPopup.classList.remove('modal_active');
-}
-
-function formSubmitHandler(evt) { //заполнение профиля
-    evt.preventDefault();
+function fillForm(e) {
+    e.preventDefault();
     newName.textContent = nameInput.value;
     newJob.textContent = jobInput.value;
-    closeModal();
+    closePopup(editModal);
 }
 
-edit.addEventListener('click', openModal);
-add.addEventListener('click', openAdd);
-closeEdit.addEventListener('click', closeModal);
-closeAddBtn.addEventListener('click', closeAdd);
-closeImg.addEventListener('click', closeImage);
-profile.addEventListener('submit', formSubmitHandler);
+profile.addEventListener('submit', fillForm);
 
 const initialCards = [{
         name: 'Архыз',
@@ -98,19 +115,6 @@ initialCards.forEach(function(element) {
     })
 });
 
-const captionModal = document.querySelector('.modal__caption');
-const imageModal = document.querySelector('.modal__img');
-const openImg = (event) => {
-    imgPopup.classList.add('modal_active');
-    imageModal.src = event.target.src;
-    captionModal.textContent = event.target.alt;
-}
-
-const cards = document.querySelectorAll('.element__img');
-cards.forEach(card => {
-    card.addEventListener('click', openImg);
-})
-
 const like = document.querySelectorAll('.element__like');
 for (let a = 0; a < like.length; a++) {
     like[a].addEventListener('click', function() {
@@ -118,7 +122,7 @@ for (let a = 0; a < like.length; a++) {
     });
 }
 
-addModal.addEventListener('submit', function(e) { //Добавить карточку
+addModal.addEventListener('submit', function(e) {
     e.preventDefault();
 
     const newItem = templateElement.cloneNode(true).querySelector('.element');
@@ -130,7 +134,7 @@ addModal.addEventListener('submit', function(e) { //Добавить карто�
     newItem.querySelector('.element__like').addEventListener('click', function(event) {
         event.target.classList.toggle('element__like_active');
     });
-    closeAdd();
+    closePopup(addModal);
     placeInput.value = '';
     imgInput.value = '';
 
@@ -144,3 +148,9 @@ addModal.addEventListener('submit', function(e) { //Добавить карто�
         e.currentTarget.closest('.element').remove()
     })
 })
+
+function createCard(item) {
+    // тут создаете карточку
+    //устанавливаете 3 обработчика карточки
+    return cardElement //возвращаете готовую к вставке в `DOM` карточку
+}
