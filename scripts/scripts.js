@@ -50,17 +50,6 @@ closeAddBtn.addEventListener('click', (e) => {
     closePopup(addModal);
 })
 
-const openImg = (e) => {
-    imgPopup.classList.add('modal_active');
-    imageModal.src = e.target.src;
-    captionModal.textContent = e.target.alt;
-}
-
-const cards = document.querySelectorAll('.element__img');
-cards.forEach(card => {
-    card.addEventListener('click', openImg);
-})
-
 closeImgBtn.addEventListener('click', (e) => {
     closePopup(imgPopup);
 })
@@ -115,6 +104,17 @@ initialCards.forEach(function(element) {
     })
 });
 
+const openImg = (e) => {
+    imgPopup.classList.add('modal_active');
+    imageModal.src = e.target.src;
+    captionModal.textContent = e.target.alt;
+}
+
+const cards = document.querySelectorAll('.element__img');
+cards.forEach(card => {
+    card.addEventListener('click', openImg);
+})
+
 const like = document.querySelectorAll('.element__like');
 for (let a = 0; a < like.length; a++) {
     like[a].addEventListener('click', function() {
@@ -148,9 +148,3 @@ addModal.addEventListener('submit', function(e) {
         e.currentTarget.closest('.element').remove()
     })
 })
-
-function createCard(item) {
-    // тут создаете карточку
-    //устанавливаете 3 обработчика карточки
-    return cardElement //возвращаете готовую к вставке в `DOM` карточку
-}
