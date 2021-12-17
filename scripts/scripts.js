@@ -107,7 +107,6 @@ function createCard(card) {
     }
 
     const cards = cardElement.querySelectorAll('.element__img');
-    console.log(cards);
     cards.forEach(card => {
         card.addEventListener('click', openImg);
     })
