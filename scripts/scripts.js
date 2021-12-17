@@ -90,61 +90,48 @@ const initialCards = [{
 ];
 
 initialCards.forEach(function(element) {
-    const cardElement = templateElement.cloneNode(true);
-    cardElement.querySelector('.element__caption').textContent = element.name;
-    cardElement.querySelector('.element__img').alt = element.name;
-    cardElement.querySelector('.element__img').src = element.link;
+    const cardElement = createCard(element);
     elements.append(cardElement);
-
-    const deleteButton = document.querySelectorAll('.element__delete');
-    deleteButton.forEach(element => {
-        element.addEventListener('click', e => {
-            e.currentTarget.closest('.element').remove()
-        })
-    })
 });
 
-const openImg = (e) => {
-    imgPopup.classList.add('modal_active');
-    imageModal.src = e.target.src;
-    captionModal.textContent = e.target.alt;
-}
+function createCard(card) {
+    const cardElement = templateElement.cloneNode(true);
+    cardElement.querySelector('.element__caption').textContent = card.name;
+    cardElement.querySelector('.element__img').alt = card.name;
+    cardElement.querySelector('.element__img').src = card.link;
 
-const cards = document.querySelectorAll('.element__img');
-cards.forEach(card => {
-    card.addEventListener('click', openImg);
-})
+    const openImg = (e) => {
+        openPopup(imgPopup);
+        imageModal.src = e.target.src;
+        captionModal.textContent = e.target.alt;
+    }
 
-const like = document.querySelectorAll('.element__like');
-for (let a = 0; a < like.length; a++) {
-    like[a].addEventListener('click', function() {
-        like[a].classList.toggle('element__like_active');
-    });
+    const cards = cardElement.querySelectorAll('.element__img');
+    console.log(cards);
+    cards.forEach(card => {
+        card.addEventListener('click', openImg);
+    })
+
+    const like = cardElement.querySelector('.element__like');
+    like.addEventListener('click', e => {
+        e.target.classList.toggle('element__like_active');
+    })
+
+    const deleteButton = cardElement.querySelector('.element__delete');
+    deleteButton.addEventListener('click', e => {
+        e.currentTarget.closest('.element').remove()
+    })
+    return cardElement
 }
 
 addModal.addEventListener('submit', function(e) {
     e.preventDefault();
-
-    const newItem = templateElement.cloneNode(true).querySelector('.element');
-    newItem.querySelector('.element__caption').textContent = placeInput.value;
-    newItem.querySelector('.element__img').alt = placeInput.value;
-    newItem.querySelector('.element__img').src = imgInput.value;
-
-    elements.insertAdjacentElement('afterbegin', newItem);
-    newItem.querySelector('.element__like').addEventListener('click', function(event) {
-        event.target.classList.toggle('element__like_active');
+    const cardElement = createCard({
+        name: placeInput.value,
+        link: imgInput.value
     });
+    elements.prepend(cardElement);
     closePopup(addModal);
     placeInput.value = '';
     imgInput.value = '';
-
-    const newItems = document.querySelectorAll('.element__img');
-    newItems.forEach(card => {
-        card.addEventListener('click', openImg);
-    })
-
-    const deleteButton = document.querySelector('.element__delete');
-    deleteButton.addEventListener('click', e => {
-        e.currentTarget.closest('.element').remove()
-    })
 })
