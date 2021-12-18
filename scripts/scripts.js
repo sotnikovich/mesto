@@ -109,6 +109,7 @@ function createCard(card) {
     const openImg = (e) => {
         openPopup(imgPopup);
         imageModal.src = e.target.src;
+        imageModal.alt = e.target.alt;
         captionModal.textContent = e.target.alt;
     }
 
