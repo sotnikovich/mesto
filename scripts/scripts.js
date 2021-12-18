@@ -65,27 +65,33 @@ profile.addEventListener('submit', fillForm);
 
 const initialCards = [{
         name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+        alt: 'Потрясающий вид на горы'
     },
     {
         name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+        alt: 'Лесное озеро'
     },
     {
         name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+        alt: 'Однотипные хрущевки в Иваново'
     },
     {
         name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+        alt: 'Одинокая гора'
     },
     {
         name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+        alt: 'Железнодорожный путь сквозь лоно дикой природы'
     },
     {
         name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+        alt: 'Массивный утес, омываемый водами Байкала'
     }
 ];
 
@@ -97,7 +103,7 @@ initialCards.forEach(function(element) {
 function createCard(card) {
     const cardElement = templateElement.cloneNode(true);
     cardElement.querySelector('.element__caption').textContent = card.name;
-    cardElement.querySelector('.element__img').alt = card.name;
+    cardElement.querySelector('.element__img').alt = card.alt;
     cardElement.querySelector('.element__img').src = card.link;
 
     const openImg = (e) => {
@@ -127,6 +133,7 @@ addModal.addEventListener('submit', function(e) {
     e.preventDefault();
     const cardElement = createCard({
         name: placeInput.value,
+        alt: placeInput.value,
         link: imgInput.value
     });
     elements.prepend(cardElement);
