@@ -3,6 +3,7 @@ const popup = document.querySelectorAll('.modal');
 const editModal = document.querySelector('.modal-edit');
 const addModal = document.querySelector('.modal-add');
 const imgPopup = document.querySelector('.modal-img');
+const addForm = document.forms.addForm;
 
 const editBtn = document.querySelector('.profile__edit-button');
 const addBtn = document.querySelector('.profile__add-button');
@@ -139,6 +140,5 @@ addModal.addEventListener('submit', function(e) {
     });
     elements.prepend(cardElement);
     closePopup(addModal);
-    placeInput.value = '';
-    imgInput.value = '';
+    addForm.reset();
 })
