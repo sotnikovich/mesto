@@ -17,7 +17,6 @@
 }
 
 .modal__input:focus {
-    padding: 5px;
     outline: 0;
 }
 

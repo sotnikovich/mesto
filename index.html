@@ -32,10 +32,10 @@
                 <div class="modal__inner">
                     <h2 class="modal__title">Редактировать профиль</h2>
                     <button class="modal__close modal__close_type_edit" type="button" aria-label="закрытие попап"></button>
-                    <form class="modal__profile form" name="editForm">
-                        <input class="modal__input modal__input_type_name" id="nameInput" name="name" placeholder="Имя" value="" minlength="2" maxlength="40" required>
+                    <form class="modal__profile form" name="editForm" novalidate>
+                        <input class="modal__input modal__input_type_name" id="nameInput" name="name" placeholder="Имя" value="" minlength="2" maxlength="40" required autocomplete="off">
                         <span class="modal__error" id="nameInputError"></span>
-                        <input class="modal__input modal__input_type_job" id="jobInput" name="job" placeholder="О себе" value="" minlength="2" maxlength="200" required>
+                        <input class="modal__input modal__input_type_job" id="jobInput" name="job" placeholder="О себе" value="" minlength="2" maxlength="200" required autocomplete="off">
                         <span class="modal__error" id="jobInputError"></span>
                         <button class="modal__submit modal__submit_type_about" type="submit">Сохранить</button>
                     </form>
@@ -46,8 +46,8 @@
                 <div class="modal__inner">
                     <h2 class="modal__title">Новое место</h2>
                     <button class="modal__close modal__close_type_add" type="button" aria-label="закрытие попап"></button>
-                    <form class="modal__add form" name="addForm">
-                        <input id="placeInput" class="modal__input modal__input_type_title" name="title" placeholder="Название" minlength="2" maxlength="30" value="" required>
+                    <form class="modal__add form" name="addForm" novalidate>
+                        <input id="placeInput" class="modal__input modal__input_type_title" name="title" placeholder="Название" minlength="2" maxlength="30" value="" required autocomplete="off">
                         <span class="modal__error" id="placeInputError"></span>
                         <input id="linkInput" type="url" class="modal__input modal__input_type_link" name="link" placeholder="Ссылка на картинку" value="" required>
                         <span class="modal__error" id="linkInputError"></span>

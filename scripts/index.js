@@ -4,6 +4,9 @@ const editModal = document.querySelector('.modal-edit');
 const addModal = document.querySelector('.modal-add');
 const imgPopup = document.querySelector('.modal-img');
 
+const addForm = document.forms.addForm;
+const editForm = document.forms.editForm;
+
 const editBtn = document.querySelector('.profile__edit-button');
 const addBtn = document.querySelector('.profile__add-button');
 
@@ -38,15 +41,15 @@ const overlayEdit = document.querySelector('.modal__overlay_type_edit');
 const overlayAdd = document.querySelector('.modal__overlay_type_add');
 const overlayImg = document.querySelector('.modal__overlay_type_img');
 
-function handleClickOverlay(overlay, popup) {
+function closeWithOverlay(overlay, popup) {
     overlay.addEventListener('click', () => {
         closePopup(popup);
     })
 }
 
-handleClickOverlay(overlayEdit, editModal);
-handleClickOverlay(overlayAdd, addModal);
-handleClickOverlay(overlayImg, imgPopup);
+closeWithOverlay(overlayEdit, editModal);
+closeWithOverlay(overlayAdd, addModal);
+closeWithOverlay(overlayImg, imgPopup);
 
 function closeWithEsc(e) {
     if (e.key === 'Escape') {
@@ -60,6 +63,7 @@ editBtn.addEventListener('click', (e) => {
     nameInput.value = newName.textContent;
     jobInput.value = newJob.textContent;
     openPopup(editModal);
+    hideError(editForm);
 })
 
 closeEditBtn.addEventListener('click', (e) => {
@@ -68,6 +72,8 @@ closeEditBtn.addEventListener('click', (e) => {
 
 addBtn.addEventListener('click', (e) => {
     openPopup(addModal);
+    hideError(addForm);
+    resetForm(addForm);
 })
 
 closeAddBtn.addEventListener('click', (e) => {
@@ -86,6 +92,10 @@ function fillForm(e) {
 }
 
 profile.addEventListener('submit', fillForm);
+
+const resetForm = (form) => {
+    form.reset()
+}
 
 const initialCards = [{
         name: 'Архыз',
