@@ -26,10 +26,34 @@ const elements = document.querySelector('.elements');
 
 function openPopup(popup) {
     popup.classList.add('modal_active');
+    document.body.addEventListener('keyup', closeWithEsc);
 }
 
 function closePopup(popup) {
     popup.classList.remove('modal_active');
+    document.body.removeEventListener('keyup', closeWithEsc);
+}
+
+const overlayEdit = document.querySelector('.modal__overlay_type_edit');
+const overlayAdd = document.querySelector('.modal__overlay_type_add');
+const overlayImg = document.querySelector('.modal__overlay_type_img');
+
+function handleClickOverlay(overlay, popup) {
+    overlay.addEventListener('click', () => {
+        closePopup(popup);
+    })
+}
+
+handleClickOverlay(overlayEdit, editModal);
+handleClickOverlay(overlayAdd, addModal);
+handleClickOverlay(overlayImg, imgPopup);
+
+function closeWithEsc(e) {
+    if (e.key === 'Escape') {
+        closePopup(editModal);
+        closePopup(addModal);
+        closePopup(imgPopup);
+    }
 }
 
 editBtn.addEventListener('click', (e) => {
