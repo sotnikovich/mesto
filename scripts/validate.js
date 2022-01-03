@@ -82,13 +82,13 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
 
 const hideError = (form) => {
     const inputList = Array.from(form.querySelectorAll('.modal__input'));
-    const errorElement = Array.from(form.querySelectorAll('.modal__error'));
+    const errorList = Array.from(form.querySelectorAll('.modal__error'));
 
     inputList.forEach((input) => {
         input.classList.remove('modal__input_type_error');
     });
 
-    errorElement.forEach((error) => {
+    errorList.forEach((error) => {
         error.classList.remove('modal__error_visible');
         error.textContent = '';
     });

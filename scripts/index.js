@@ -1,5 +1,3 @@
-const popup = document.querySelectorAll('.modal');
-
 const editModal = document.querySelector('.modal-edit');
 const addModal = document.querySelector('.modal-add');
 const imgPopup = document.querySelector('.modal-img');
@@ -53,9 +51,7 @@ closeWithOverlay(overlayImg, imgPopup);
 
 function closeWithEsc(e) {
     if (e.key === 'Escape') {
-        closePopup(editModal);
-        closePopup(addModal);
-        closePopup(imgPopup);
+        closePopup(document.querySelector('.modal_active'));
     }
 }
 
@@ -66,23 +62,15 @@ editBtn.addEventListener('click', (e) => {
     hideError(editForm);
 })
 
-closeEditBtn.addEventListener('click', (e) => {
-    closePopup(editModal);
-})
-
 addBtn.addEventListener('click', (e) => {
     openPopup(addModal);
     hideError(addForm);
     resetForm(addForm);
 })
 
-closeAddBtn.addEventListener('click', (e) => {
-    closePopup(addModal);
-})
-
-closeImgBtn.addEventListener('click', (e) => {
-    closePopup(imgPopup);
-})
+closeAddBtn.addEventListener('click', () => closePopup(addModal));
+closeEditBtn.addEventListener('click', () => closePopup(editModal));
+closeImgBtn.addEventListener('click', () => closePopup(imgPopup));
 
 function fillForm(e) {
     e.preventDefault();
@@ -97,38 +85,6 @@ const resetForm = (form) => {
     form.reset()
 }
 
-const initialCards = [{
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-        alt: 'Потрясающий вид на горы'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-        alt: 'Лесное озеро'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-        alt: 'Однотипные хрущевки в Иваново'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-        alt: 'Одинокая гора'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-        alt: 'Железнодорожный путь сквозь лоно дикой природы'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-        alt: 'Массивный утес, омываемый водами Байкала'
-    }
-];
-
 initialCards.forEach(function(element) {
     const cardElement = createCard(element);
     elements.append(cardElement);
@@ -136,9 +92,10 @@ initialCards.forEach(function(element) {
 
 function createCard(card) {
     const cardElement = templateElement.cloneNode(true);
+    const picture = cardElement.querySelector('.element__img');
     cardElement.querySelector('.element__caption').textContent = card.name;
-    cardElement.querySelector('.element__img').alt = card.alt;
-    cardElement.querySelector('.element__img').src = card.link;
+    picture.alt = card.alt;
+    picture.src = card.link;
 
     const openImg = (e) => {
         openPopup(imgPopup);
@@ -147,10 +104,7 @@ function createCard(card) {
         captionModal.textContent = e.target.alt;
     }
 
-    const cards = cardElement.querySelectorAll('.element__img');
-    cards.forEach(card => {
-        card.addEventListener('click', openImg);
-    })
+    picture.addEventListener('click', openImg);
 
     const like = cardElement.querySelector('.element__like');
     like.addEventListener('click', e => {

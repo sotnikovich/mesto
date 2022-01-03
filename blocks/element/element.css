@@ -1,6 +1,12 @@
 .element {
-    width: 100%;
+    width: 282px;
     margin: 0;
     position: relative;
     box-sizing: border-box;
+}
+
+@media screen and (max-width: 660px) {
+    .element {
+        width: 100%;
+    }
 }
