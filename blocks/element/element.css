@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 950px) {
     .element {
         width: 100%;
     }
