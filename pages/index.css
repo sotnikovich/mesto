@@ -33,7 +33,6 @@
 /*modal*/
 
 @import url(../blocks/modal/modal.css);
-@import url(../blocks/modal/__overlay/modal__overlay.css);
 @import url(../blocks/modal/_active/modal_active.css);
 @import url(../blocks/modal/__inner/modal__inner.css);
 @import url(../blocks/modal/__title/modal__title.css);

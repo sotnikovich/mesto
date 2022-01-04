@@ -35,19 +35,17 @@ function closePopup(popup) {
     document.body.removeEventListener('keyup', closeWithEsc);
 }
 
-const overlayEdit = document.querySelector('.modal__overlay_type_edit');
-const overlayAdd = document.querySelector('.modal__overlay_type_add');
-const overlayImg = document.querySelector('.modal__overlay_type_img');
-
-function closeWithOverlay(overlay, popup) {
-    overlay.addEventListener('click', () => {
-        closePopup(popup);
-    })
+function closeWithOverlay(popup) {
+    popup.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal') || e.target.classList.contains('modal__close')) {
+            closePopup(popup);
+        }
+    });
 }
 
-closeWithOverlay(overlayEdit, editModal);
-closeWithOverlay(overlayAdd, addModal);
-closeWithOverlay(overlayImg, imgPopup);
+closeWithOverlay(editModal);
+closeWithOverlay(addModal);
+closeWithOverlay(imgPopup);
 
 function closeWithEsc(e) {
     if (e.key === 'Escape') {
