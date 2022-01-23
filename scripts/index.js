@@ -1,6 +1,9 @@
+import { Card } from "./Card.js";
+import { FormValidator, enableValidation } from "./FormValidator.js";
+
 const editModal = document.querySelector('.modal-edit');
 const addModal = document.querySelector('.modal-add');
-const imgPopup = document.querySelector('.modal-img');
+export const imgPopup = document.querySelector('.modal-img');
 
 const addForm = document.forms.addForm;
 const editForm = document.forms.editForm;
@@ -17,15 +20,13 @@ const nameInput = document.querySelector('.modal__input_type_name');
 const jobInput = document.querySelector('.modal__input_type_job');
 const placeInput = document.querySelector('.modal__input_type_title');
 const imgInput = document.querySelector('.modal__input_type_link');
-const captionModal = document.querySelector('.modal__caption');
-const imageModal = document.querySelector('.modal__img');
-
+export const captionModal = document.querySelector('.modal__caption');
+export const imageModal = document.querySelector('.modal__img');
 const newName = document.querySelector('.profile__title');
 const newJob = document.querySelector('.profile__subtitle');
-const templateElement = document.querySelector('.template__element').content;
 const elements = document.querySelector('.elements');
 
-function openPopup(popup) {
+export function openPopup(popup) {
     popup.classList.add('modal_active');
     document.body.addEventListener('keyup', closeWithEsc);
 }
@@ -53,18 +54,36 @@ function closeWithEsc(e) {
     }
 }
 
-editBtn.addEventListener('click', (e) => {
+editBtn.addEventListener('click', () => {
     nameInput.value = newName.textContent;
     jobInput.value = newJob.textContent;
     openPopup(editModal);
     hideError(editForm);
 })
 
-addBtn.addEventListener('click', (e) => {
+addBtn.addEventListener('click', () => {
     openPopup(addModal);
-    hideError(addForm);
     resetForm(addForm);
+    hideError(addForm);
 })
+
+function resetForm(form) {
+    form.reset();
+}
+
+function hideError(form) {
+    const inputList = Array.from(form.querySelectorAll('.modal__input'));
+    const errorList = Array.from(form.querySelectorAll('.modal__error'));
+
+    inputList.forEach((input) => {
+        input.classList.remove('modal__input_type_error');
+    });
+
+    errorList.forEach((error) => {
+        error.classList.remove('modal__error_visible');
+        error.textContent = '';
+    });
+};
 
 closeAddBtn.addEventListener('click', () => closePopup(addModal));
 closeEditBtn.addEventListener('click', () => closePopup(editModal));
@@ -79,51 +98,62 @@ function fillForm(e) {
 
 profile.addEventListener('submit', fillForm);
 
-const resetForm = (form) => {
-    form.reset()
-}
+const initialCards = [{
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+        alt: 'Потрясающий вид на горы'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+        alt: 'Лесное озеро'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+        alt: 'Однотипные хрущевки в Иваново'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+        alt: 'Одинокая гора'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+        alt: 'Железнодорожный путь сквозь лоно дикой природы'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+        alt: 'Массивный утес, омываемый водами Байкала'
+    }
+];
 
-initialCards.forEach(function(element) {
-    const cardElement = createCard(element);
+initialCards.forEach((item) => {
+    const card = new Card(item, '.template__element');
+    const cardElement = card.renderCard();
     elements.append(cardElement);
 });
 
-function createCard(card) {
-    const cardElement = templateElement.cloneNode(true);
-    const picture = cardElement.querySelector('.element__img');
-    cardElement.querySelector('.element__caption').textContent = card.name;
-    picture.alt = card.alt;
-    picture.src = card.link;
 
-    const openImg = (e) => {
-        openPopup(imgPopup);
-        imageModal.src = e.target.src;
-        imageModal.alt = e.target.alt;
-        captionModal.textContent = e.target.alt;
-    }
-
-    picture.addEventListener('click', openImg);
-
-    const like = cardElement.querySelector('.element__like');
-    like.addEventListener('click', e => {
-        e.target.classList.toggle('element__like_active');
-    })
-
-    const deleteButton = cardElement.querySelector('.element__delete');
-    deleteButton.addEventListener('click', e => {
-        e.currentTarget.closest('.element').remove()
-    })
-    return cardElement
-}
-
-addModal.addEventListener('submit', function(e) {
+addModal.addEventListener('submit', (e) => {
     e.preventDefault();
-    const cardElement = createCard({
+
+    const newCard = {
         name: placeInput.value,
         alt: placeInput.value,
         link: imgInput.value
-    });
+    };
+    const addCard = new Card(newCard, '.template__element');
+    const cardElement = addCard.renderCard();
     elements.prepend(cardElement);
     closePopup(addModal);
     addForm.reset();
 })
+
+const editPopupValidation = new FormValidator(enableValidation, editForm);
+editPopupValidation.enableValidation();
+
+const addPopupValidation = new FormValidator(enableValidation, addForm);
+addPopupValidation.enableValidation();
