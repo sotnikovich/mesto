@@ -32,7 +32,7 @@ export class Card {
         this._element.querySelector('.element__delete').addEventListener('click', () => {
             this._deleteButtonClick();
         });
-        this._element.querySelector('.element__img').addEventListener('click', () => {
+        this._picture.addEventListener('click', () => {
             this._openImg();
         });
     }
