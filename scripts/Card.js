@@ -4,7 +4,6 @@ export class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
         this._link = data.link;
-        this._alt = data.alt;
         this._cardSelector = cardSelector;
     }
 
@@ -17,7 +16,6 @@ export class Card {
         this._element = this._getTemplate();
         this._picture = this._element.querySelector('.element__img');
         this._picture.src = this._link;
-        this._picture.alt = this._alt;
         this._element.querySelector('.element__caption').textContent = this._name;
         this._setEventListeners();
 
@@ -43,12 +41,12 @@ export class Card {
 
     _deleteButtonClick() {
         this._element.remove();
+        this._element = null;
     }
 
     _openImg() {
         openPopup(imgPopup);
         imageModal.src = this._link;
-        imageModal.alt = this._alt;
         captionModal.textContent = this._name;
     }
 

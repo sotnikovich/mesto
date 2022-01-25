@@ -1,22 +1,15 @@
-export const enableValidation = ({
-    formSelector: '.form',
-    inputSelector: '.modal__input',
-    submitButtonSelector: '.modal__submit',
-    inactiveButtonClass: 'modal__submit_disabled',
-    inputErrorClass: 'modal__input_type_error',
-    errorClass: 'modal__error_visible'
-});
-
 export class FormValidator {
-    constructor(formElements, form) {
+    constructor(enableValidation, form) {
         this._form = form;
-        this._formSelector = formElements.formSelector;
-        this._inputSelector = formElements.inputSelector;
-        this._submitButtonSelector = formElements.submitButtonSelector;
-        this._inactiveButtonClass = formElements.inactiveButtonClass;
-        this._inputErrorClass = formElements.inputErrorClass;
-        this._errorClass = formElements.errorClass;
+        this._enableValidation = enableValidation;
+        this._formSelector = enableValidation.formSelector;
+        this._inputSelector = enableValidation.inputSelector;
+        this._submitButtonSelector = enableValidation.submitButtonSelector;
+        this._inactiveButtonClass = enableValidation.inactiveButtonClass;
+        this._inputErrorClass = enableValidation.inputErrorClass;
+        this._errorClass = enableValidation.errorClass;
         this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+        this._errorList = Array.from(this._form.querySelectorAll('.modal__error'));
     }
 
     _showInputError(inputElement) {
@@ -56,6 +49,13 @@ export class FormValidator {
                 this._toggleButtonState();
             });
         });
+
+        this._formList = Array.from(document.querySelectorAll('.form'));
+        this._formList.forEach((formElement) => {
+            formElement.addEventListener('submit', (evt) => {
+                evt.preventDefault();
+            });
+        });
     };
 
     _hasInvalidInput() {
@@ -74,6 +74,18 @@ export class FormValidator {
             this._buttonElement.disabled = false;
         }
     };
+
+    hideError() {
+        this._inputList.forEach((input) => {
+            input.classList.remove(this._inputErrorClass);
+        });
+
+        this._errorList.forEach((error) => {
+            error.classList.remove(this._errorClass);
+            error.textContent = '';
+        });
+    };
+
 
     enableValidation() {
         this._setEventListeners();

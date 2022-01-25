@@ -1,5 +1,6 @@
+import { initialCards } from "./initialCards.js"
 import { Card } from "./Card.js";
-import { FormValidator, enableValidation } from "./FormValidator.js";
+import { FormValidator } from "./FormValidator.js";
 
 const editModal = document.querySelector('.modal-edit');
 const addModal = document.querySelector('.modal-add');
@@ -25,6 +26,15 @@ export const imageModal = document.querySelector('.modal__img');
 const newName = document.querySelector('.profile__title');
 const newJob = document.querySelector('.profile__subtitle');
 const elements = document.querySelector('.elements');
+
+const enableValidation = ({
+    formSelector: '.form',
+    inputSelector: '.modal__input',
+    submitButtonSelector: '.modal__submit',
+    inactiveButtonClass: 'modal__submit_disabled',
+    inputErrorClass: 'modal__input_type_error',
+    errorClass: 'modal__error_visible'
+});
 
 export function openPopup(popup) {
     popup.classList.add('modal_active');
@@ -54,40 +64,9 @@ function closeWithEsc(e) {
     }
 }
 
-editBtn.addEventListener('click', () => {
-    nameInput.value = newName.textContent;
-    jobInput.value = newJob.textContent;
-    openPopup(editModal);
-    hideError(editForm);
-})
-
-addBtn.addEventListener('click', () => {
-    openPopup(addModal);
-    resetForm(addForm);
-    hideError(addForm);
-})
-
 function resetForm(form) {
     form.reset();
 }
-
-function hideError(form) {
-    const inputList = Array.from(form.querySelectorAll('.modal__input'));
-    const errorList = Array.from(form.querySelectorAll('.modal__error'));
-
-    inputList.forEach((input) => {
-        input.classList.remove('modal__input_type_error');
-    });
-
-    errorList.forEach((error) => {
-        error.classList.remove('modal__error_visible');
-        error.textContent = '';
-    });
-};
-
-closeAddBtn.addEventListener('click', () => closePopup(addModal));
-closeEditBtn.addEventListener('click', () => closePopup(editModal));
-closeImgBtn.addEventListener('click', () => closePopup(imgPopup));
 
 function fillForm(e) {
     e.preventDefault();
@@ -96,46 +75,32 @@ function fillForm(e) {
     closePopup(editModal);
 }
 
+function createCard(item) {
+    const card = new Card(item, '.template__element');
+    return card.renderCard();
+}
+
+editBtn.addEventListener('click', () => {
+    nameInput.value = newName.textContent;
+    jobInput.value = newJob.textContent;
+    openPopup(editModal);
+    editPopupValidation.hideError();
+})
+
+addBtn.addEventListener('click', () => {
+    openPopup(addModal);
+    addPopupValidation.hideError();
+    resetForm(addForm);
+})
+
+closeAddBtn.addEventListener('click', () => closePopup(addModal));
+closeEditBtn.addEventListener('click', () => closePopup(editModal));
+closeImgBtn.addEventListener('click', () => closePopup(imgPopup));
 profile.addEventListener('submit', fillForm);
 
-const initialCards = [{
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-        alt: 'Потрясающий вид на горы'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-        alt: 'Лесное озеро'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-        alt: 'Однотипные хрущевки в Иваново'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-        alt: 'Одинокая гора'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-        alt: 'Железнодорожный путь сквозь лоно дикой природы'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-        alt: 'Массивный утес, омываемый водами Байкала'
-    }
-];
-
 initialCards.forEach((item) => {
-    const card = new Card(item, '.template__element');
-    const cardElement = card.renderCard();
-    elements.append(cardElement);
+    elements.append(createCard(item));
 });
-
 
 addModal.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -145,11 +110,9 @@ addModal.addEventListener('submit', (e) => {
         alt: placeInput.value,
         link: imgInput.value
     };
-    const addCard = new Card(newCard, '.template__element');
-    const cardElement = addCard.renderCard();
-    elements.prepend(cardElement);
+
+    elements.prepend(createCard(newCard));
     closePopup(addModal);
-    addForm.reset();
 })
 
 const editPopupValidation = new FormValidator(enableValidation, editForm);
