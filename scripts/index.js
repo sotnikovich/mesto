@@ -27,7 +27,7 @@ const newName = document.querySelector('.profile__title');
 const newJob = document.querySelector('.profile__subtitle');
 const elements = document.querySelector('.elements');
 
-const enableValidation = ({
+const validationConfig = ({
     formSelector: '.form',
     inputSelector: '.modal__input',
     submitButtonSelector: '.modal__submit',
@@ -39,6 +39,12 @@ const enableValidation = ({
 export function openPopup(popup) {
     popup.classList.add('modal_active');
     document.body.addEventListener('keyup', closeWithEsc);
+}
+
+function closeWithEsc(e) {
+    if (e.key === 'Escape') {
+        closePopup(document.querySelector('.modal_active'));
+    }
 }
 
 function closePopup(popup) {
@@ -57,12 +63,6 @@ function closeWithOverlay(popup) {
 closeWithOverlay(editModal);
 closeWithOverlay(addModal);
 closeWithOverlay(imgPopup);
-
-function closeWithEsc(e) {
-    if (e.key === 'Escape') {
-        closePopup(document.querySelector('.modal_active'));
-    }
-}
 
 function resetForm(form) {
     form.reset();
@@ -115,8 +115,8 @@ addModal.addEventListener('submit', (e) => {
     closePopup(addModal);
 })
 
-const editPopupValidation = new FormValidator(enableValidation, editForm);
+const editPopupValidation = new FormValidator(validationConfig, editForm);
 editPopupValidation.enableValidation();
 
-const addPopupValidation = new FormValidator(enableValidation, addForm);
+const addPopupValidation = new FormValidator(validationConfig, addForm);
 addPopupValidation.enableValidation();

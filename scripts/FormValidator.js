@@ -1,13 +1,12 @@
 export class FormValidator {
-    constructor(enableValidation, form) {
+    constructor(config, form) {
         this._form = form;
-        this._enableValidation = enableValidation;
-        this._formSelector = enableValidation.formSelector;
-        this._inputSelector = enableValidation.inputSelector;
-        this._submitButtonSelector = enableValidation.submitButtonSelector;
-        this._inactiveButtonClass = enableValidation.inactiveButtonClass;
-        this._inputErrorClass = enableValidation.inputErrorClass;
-        this._errorClass = enableValidation.errorClass;
+        this._formSelector = config.formSelector;
+        this._inputSelector = config.inputSelector;
+        this._submitButtonSelector = config.submitButtonSelector;
+        this._inactiveButtonClass = config.inactiveButtonClass;
+        this._inputErrorClass = config.inputErrorClass;
+        this._errorClass = config.errorClass;
         this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
         this._errorList = Array.from(this._form.querySelectorAll('.modal__error'));
     }
