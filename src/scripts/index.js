@@ -1,6 +1,9 @@
-import { initialCards } from "./initialCards.js"
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
+import '../pages/index.css';
+
+import { initialCards } from "./initialCards.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import Section from './Section.js';
 
 const editModal = document.querySelector('.modal-edit');
 const addModal = document.querySelector('.modal-add');
@@ -26,6 +29,7 @@ export const imageModal = document.querySelector('.modal__img');
 const newName = document.querySelector('.profile__title');
 const newJob = document.querySelector('.profile__subtitle');
 const elements = document.querySelector('.elements');
+const templateElement = document.querySelector('.template__element');
 
 const validationConfig = ({
     formSelector: '.form',
@@ -76,8 +80,16 @@ function fillForm(e) {
 }
 
 function createCard(item) {
-    const card = new Card(item, '.template__element');
-    return card.renderCard();
+    const card = new Card(item, templateElement, () => {
+        return card.renderCard();
+    });
+}
+
+function openImg() {
+    openPopup(imgPopup);
+    imageModal.src = this._link;
+    imageModal.alt = this._alt;
+    captionModal.textContent = this._name;
 }
 
 editBtn.addEventListener('click', () => {
@@ -98,10 +110,6 @@ closeEditBtn.addEventListener('click', () => closePopup(editModal));
 closeImgBtn.addEventListener('click', () => closePopup(imgPopup));
 profile.addEventListener('submit', fillForm);
 
-initialCards.forEach((item) => {
-    elements.append(createCard(item));
-});
-
 addModal.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -120,3 +128,12 @@ editPopupValidation.enableValidation();
 
 const addPopupValidation = new FormValidator(validationConfig, addForm);
 addPopupValidation.enableValidation();
+
+const defaultCardList = new Section({
+    items: initialCards,
+    renderer: (item) => {
+        const cardElement = createCard(item);
+        defaultCardList.addItem(cardElement);
+    }
+}, elements);
+defaultCardList.renderItems();
