@@ -1,8 +1,9 @@
 export default class Card {
     constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
+        this._alt = data.name;
         this._link = data.link;
-        this._cardSelector = cardSelector;
+        this._cardSelector = document.querySelector(cardSelector);
         this._handleCardClick = handleCardClick;
     }
 
@@ -13,10 +14,11 @@ export default class Card {
 
     renderCard() {
         this._element = this._getTemplate();
-        this._element.querySelector('.element__img').src = this._link;
+        this._picture = this._element.querySelector('.element__img');
+        this._picture.src = this._link;
+        this._picture.alt = this._alt;
         this._element.querySelector('.element__caption').textContent = this._name;
         this._setEventListeners();
-
         return this._element;
     }
 

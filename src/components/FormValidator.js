@@ -8,7 +8,6 @@ export default class FormValidator {
         this._inputErrorClass = config.inputErrorClass;
         this._errorClass = config.errorClass;
         this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-        this._errorList = Array.from(this._form.querySelectorAll('.modal__error'));
         this._buttonElement = this._form.querySelector(this._submitButtonSelector);
     }
 
@@ -40,16 +39,18 @@ export default class FormValidator {
         });
     };
 
-    hideError() {
+    _hideError() {
         this._inputList.forEach((input) => {
-            input.classList.remove(this._inputErrorClass);
-        });
-
-        this._errorList.forEach((error) => {
-            error.classList.remove(this._errorClass);
-            error.textContent = '';
+            this._hideInputError(input)
         });
     };
+
+    resetValidation() {
+        this._toggleButtonState();
+        this._inputList.forEach((inputElement) => {
+            this._hideError(inputElement)
+        });
+    }
 
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
@@ -73,6 +74,9 @@ export default class FormValidator {
 
     enableValidation() {
         this._setEventListeners();
-        this._form.addEventListener('submit', (e) => e.preventDefault(), this._toggleButtonState());
+        this._form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this._toggleButtonState();
+        });
     }
 }
