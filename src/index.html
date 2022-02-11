@@ -21,9 +21,9 @@
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
                         <p class="profile__subtitle">Исследователь океана</p>
                     </div>
-                    <button class="profile__edit-button button-open-form" type="button" aria-label="кнопка редактирования"></button>
+                    <button class="profile__edit-button" type="button" aria-label="кнопка редактирования"></button>
                 </div>
-                <button class="profile__add-button button-open-form" type="button" aria-label="добавить профиль"></button>
+                <button class="profile__add-button" type="button" aria-label="добавить профиль"></button>
             </section>
             <section class="elements"></section>
             <div class="modal modal-edit">
@@ -44,7 +44,7 @@
                     <h2 class="modal__title">Новое место</h2>
                     <button class="modal__close modal__close_type_add" type="button" aria-label="закрытие попап"></button>
                     <form class="modal__add form" name="addForm" novalidate>
-                        <input id="placeInput" class="modal__input modal__input_type_title" name="title" placeholder="Название" minlength="2" maxlength="30" value="" required autocomplete="off">
+                        <input id="placeInput" class="modal__input modal__input_type_title" name="title" placeholder="Название" minlength="2" maxlength="30" value="" required>
                         <span class="modal__error" id="placeInputError"></span>
                         <input id="linkInput" type="url" class="modal__input modal__input_type_link" name="link" placeholder="Ссылка на картинку" value="" required>
                         <span class="modal__error" id="linkInputError"></span>

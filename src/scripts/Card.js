@@ -7,7 +7,7 @@ export default class Card {
     }
 
     _getTemplate() {
-        const cardElement = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
+        const cardElement = this._cardSelector.content.querySelector('.element').cloneNode(true);
         return cardElement;
     }
 
@@ -27,6 +27,9 @@ export default class Card {
         });
         this._element.querySelector('.element__delete').addEventListener('click', () => {
             this._deleteButtonClick();
+        });
+        this._element.querySelector('.element__img').addEventListener('click', () => {
+            this._handleCardClick();
         });
     }
 
