@@ -15,7 +15,7 @@
         </header>
         <main class="content">
             <section class="profile">
-                <img src="<%=require('./images/avatar.jpg')%>" alt="аватар профиля" class="profile__avatar">
+                <button class="profile__avatar-edit" type="button" aria-label="обновить аватар"> <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар профиля" class="profile__avatar"></button>
                 <div class="profile__info">
                     <div class="profile__data">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -52,11 +52,29 @@
                     </form>
                 </div>
             </div>
+            <div class="modal modal-avatar">
+                <div class="modal__inner">
+                    <button class="modal__close" type="button" aria-label="закрытие попап"></button>
+                    <h2 class="modal__title">Обновить аватар</h2>
+                    <form class="modal__avatar form" name="avatarForm" novalidate>
+                        <input id="linkInput" type="url" class="modal__input" name="link" placeholder="Ссылка на аватар" value="" required>
+                        <span class="modal__error" id="linkInputError"></span>
+                        <button class="modal__submit modal__submit_type_ava" type="submit">Сохранить</button>
+                    </form>
+                </div>
+            </div>
             <div class="modal modal-img">
                 <div class="modal-img__container">
                     <button class="modal__close modal__close_type_img" type="button" aria-label="закрытие попап"></button>
                     <img class="modal__img" src="#" alt="">
                     <p class="modal__caption"></p>
+                </div>
+            </div>
+            <div class="modal modal-confirm">
+                <div class="modal__inner">
+                    <button class="modal__close" type="button" aria-label="закрытие попап"></button>
+                    <h2 class="modal__title">Вы уверены?</h2>
+                    <button class="modal__submit modal__submit_type_confirm" type="submit">Да</button>
                 </div>
             </div>
         </main>
@@ -68,7 +86,10 @@
             <img src="#" alt="" class="element__img">
             <div class="element__signature">
                 <h2 class="element__caption"></h2>
+              <div class="element__button">
                 <button class="element__like" type="button" aria-label="лайк"></button>
+                <p class="element__counter">0</p>
+              </div>
                 <button class="element__delete" type="button" aria-label="удалить"></button>
             </div>
         </article>

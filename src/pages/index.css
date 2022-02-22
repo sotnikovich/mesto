@@ -13,6 +13,7 @@
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__avatar-edit/profile__avatar-edit.css);
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__data/profile__data.css);
@@ -27,8 +28,10 @@
 @import url(../blocks/element/__img/element__img.css);
 @import url(../blocks/element/__caption/element__caption.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__counter/element__counter.css);
 @import url(../blocks/element/__like/_active/element__like_active.css);
 @import url(../blocks/element/__delete/element__delete.css);
+@import url(../blocks/element/__delete/_active/element__delete_active.css);
 
 /*modal*/
 
@@ -50,6 +53,10 @@
 
 @import url(../blocks/modal-img/modal-img.css);
 @import url(../blocks/modal-img/__container/modal-img__container.css);
+
+/*modal-confirm*/
+
+@import url(../blocks/modal-confirm/modal-confirm.css);
 
 /*footer*/
 

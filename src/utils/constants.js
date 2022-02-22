@@ -1,3 +1,4 @@
+export const avaBtn = document.querySelector('.profile__avatar-edit');
 export const editBtn = document.querySelector('.profile__edit-button');
 export const addBtn = document.querySelector('.profile__add-button');
 export const nameInput = document.querySelector('.modal__input_type_name');
