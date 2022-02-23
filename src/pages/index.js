@@ -1,5 +1,4 @@
 import './index.css';
-import { initialCards } from '../utils/initialCards.js';
 import {
     editBtn,
     addBtn,
@@ -18,21 +17,19 @@ import Api from '../components/Api.js';
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
 const api = new Api({
-    serverUrl: "https://mesto.nomoreparties.co/v1/cohort36/",
-    token: "8c8ed8aa-4046-4be0-b3e7-9f814b718ab1"
+    baseUrl: "https://mesto.nomoreparties.co/v1/cohort36/",
+    headers: {
+        authorization: '8c8ed8aa-4046-4be0-b3e7-9f814b718ab1',
+        'Content-Type': 'application/json'
+    }
 });
-
-let userId, addCardLike, deleteCardLike;
-
-const initialData = [api.getUserInfo(), api.getInitialCards()];
 
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
 
 const editPopup = new PopupWithForm('.modal-edit', {
     handleSubmitForm: (data) => {
         editPopup.loadData(true);
-        api
-            .editProfile(data)
+        api.editProfile(data)
             .then((res) => {
                 userInfo.setUserInfo(res);
                 editPopup.close();
@@ -56,8 +53,7 @@ const addPopup = new PopupWithForm('.modal-add', {
     handleSubmitForm: (data) => {
         addPopup.loadData(true);
         const item = { name: data.title, link: data.link };
-        api
-            .addNewCard(item)
+        api.addNewCard(item)
             .then((res) => {
                 section.addItem(createCard(res), true);
                 addPopup.close();
@@ -97,59 +93,55 @@ avaBtn.addEventListener('click', () => {
 const popupWithImage = new PopupWithImage('.modal-img');
 popupWithImage.setEventListeners();
 
-const openImagePopup = (evt) => {
+function openImg(e) {
     const data = {
-        image: evt.target.src,
-        text: evt.target
-            .closest(".elements")
-            .querySelector(".element__caption").textContent,
+        image: e.target.src,
+        text: e.target.closest('.element').querySelector('.element__caption').textContent
     };
     popupWithImage.open(data);
 };
 
-const deleteCard = (data) => {
-    deleteCardPopup.data = data;
-    deleteCardPopup.open();
+function deleteCard(data) {
+    popupConfirm.data = data;
+    popupConfirm.open();
 };
 
-const createCard = (data) => {
-    const card = new Card(
-        data,
-        '.template__element',
-        userId,
-        openImagePopup,
-        deleteCard,
+let userId, addCardLike, removeCardLike;
+
+function createCard(data) {
+    const card = new Card(data, '.template__element', userId, openImg,
         (addCardLike = (data) => {
             return api.addCardLike(data);
         }),
-        (deleteCardLike = (data) => {
+        (removeCardLike = (data) => {
             return api.removeCardLike(data);
-        })
-    );
-    const cardElement = card.renderCard(data);
-    return cardElement;
+        }),
+        deleteCard
+    )
+    return card.renderCard(data);
 };
 
-const deleteCardPopup = new PopupWithConfirm('.modal-confirm', {
+const popupConfirm = new PopupWithConfirm('.modal-confirm', {
     handleSubmitForm: (data) => {
-        api.deleteCard(data.cardId)
+        api.removeCard(data.cardId)
             .then(() => {
                 data.card.remove();
-                deleteCardPopup.close();
+                popupConfirm.close();
             })
             .catch((err) => console.log(err));
-    },
+    }
 });
-deleteCardPopup.setEventListeners();
+popupConfirm.setEventListeners();
 
 const section = new Section({
         renderItems: (data) => {
             section.addItem(createCard(data));
-        },
+        }
     },
     '.elements'
 );
 
+const initialData = [api.getUserInfo(), api.getInitialCards()];
 Promise.all(initialData)
     .then(([userData, cards]) => {
         userId = userData._id;

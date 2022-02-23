@@ -46,7 +46,7 @@
                     <form class="modal__add form" name="addForm" novalidate>
                         <input id="placeInput" class="modal__input modal__input_type_title" name="title" placeholder="Название" minlength="2" maxlength="30" value="" required>
                         <span class="modal__error" id="placeInputError"></span>
-                        <input id="linkInput" type="url" class="modal__input modal__input_type_link" name="link" placeholder="Ссылка на картинку" value="" required>
+                        <input id="linkInput" type="url" class="modal__input modal__input_type_link" name="link" placeholder="Ссылка на картинку" value="" required autocomplete="off">
                         <span class="modal__error" id="linkInputError"></span>
                         <button class="modal__submit modal__submit_type_place" type="submit">Создать</button>
                     </form>
@@ -57,9 +57,9 @@
                     <button class="modal__close" type="button" aria-label="закрытие попап"></button>
                     <h2 class="modal__title">Обновить аватар</h2>
                     <form class="modal__avatar form" name="avatarForm" novalidate>
-                        <input id="linkInput" type="url" class="modal__input" name="link" placeholder="Ссылка на аватар" value="" required>
-                        <span class="modal__error" id="linkInputError"></span>
-                        <button class="modal__submit modal__submit_type_ava" type="submit">Сохранить</button>
+                        <input id="avaInput" type="url" class="modal__input" name="avatar" value="" required autocomplete="off">
+                        <span class="modal__error" id="avaInputError"></span>
+                        <button class="modal__submit" type="submit">Сохранить</button>
                     </form>
                 </div>
             </div>
@@ -72,9 +72,11 @@
             </div>
             <div class="modal modal-confirm">
                 <div class="modal__inner">
-                    <button class="modal__close" type="button" aria-label="закрытие попап"></button>
-                    <h2 class="modal__title">Вы уверены?</h2>
-                    <button class="modal__submit modal__submit_type_confirm" type="submit">Да</button>
+                    <form class="form">
+                        <button class="modal__close" type="button" aria-label="закрытие попап"></button>
+                        <h2 class="modal__title">Вы уверены?</h2>
+                        <button class="modal__submit" type="submit">Да</button>
+                    </form>
                 </div>
             </div>
         </main>

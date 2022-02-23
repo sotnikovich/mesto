@@ -1,7 +1,7 @@
 export default class Api {
-    constructor(data) {
-        this._baseUrl = data.serverUrl;
-        this._token = data.token;
+    constructor(options) {
+        this._baseUrl = options.baseUrl;
+        this._headers = options.headers;
     }
 
     _checkResult(res) {
@@ -13,27 +13,20 @@ export default class Api {
 
     getUserInfo() {
         return fetch(`${this._baseUrl}users/me`, {
-            headers: {
-                authorization: this._token,
-            }
+            headers: this._headers
         }).then((res) => this._checkResult(res));
     }
 
     getInitialCards() {
         return fetch(`${this._baseUrl}cards`, {
-            headers: {
-                authorization: this._token,
-            }
+            headers: this._headers
         }).then((res) => this._checkResult(res));
     }
 
     editProfile(data) {
         return fetch(`${this._baseUrl}users/me`, {
             method: "PATCH",
-            headers: {
-                authorization: this._token,
-                "Content-Type": "application/json"
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
                 about: data.job
@@ -44,10 +37,7 @@ export default class Api {
     addNewCard(data) {
         return fetch(`${this._baseUrl}cards`, {
             method: "POST",
-            headers: {
-                authorization: this._token,
-                "Content-Type": "application/json"
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -58,37 +48,28 @@ export default class Api {
     removeCard(data) {
         return fetch(`${this._baseUrl}cards/${data}`, {
             method: "DELETE",
-            headers: {
-                authorization: this._token
-            }
+            headers: this._headers
         }).then((res) => this._checkResult(res));
     }
 
     addCardLike(data) {
         return fetch(`${this._baseUrl}cards/likes/${data}`, {
             method: "PUT",
-            headers: {
-                authorization: this._token
-            }
+            headers: this._headers
         }).then((res) => this._checkResult(res));
     }
 
     removeCardLike(data) {
         return fetch(`${this._baseUrl}cards/likes/${data}`, {
             method: "DELETE",
-            headers: {
-                authorization: this._token
-            }
+            headers: this._headers
         }).then((res) => this._checkResult(res));
     }
 
     updateAvatar(data) {
         return fetch(`${this._baseUrl}users/me/avatar`, {
             method: "PATCH",
-            headers: {
-                authorization: this._token,
-                "Content-Type": "application/json"
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 avatar: data.avatar
             })
