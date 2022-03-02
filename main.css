@@ -6,7 +6,8 @@
 .header__logo{margin-bottom:41px}@media screen and (max-width:425px){.header__logo{height:24.4px;margin:0 0 31.6px 27px;width:103.74px}}
 .profile{align-items:center;display:flex;justify-content:space-between;margin:40px 0 44px}@media screen and (max-width:680px){.profile{flex-direction:column;margin:38.25px 0 29px}}@media screen and (max-width:425px){.profile{margin:40px auto 44px;width:88.13%}}
 .profile__info{display:flex;flex-basis:63%}@media screen and (max-width:890px){.profile__info{flex-basis:55%}}
-.profile__avatar{border-radius:50%;height:100%}
+.profile__avatar{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;position:relative;width:120px;z-index:-1}
+.profile__avatar-edit{background:transparent;border:none;border-radius:50%;outline:none;transition:background-color .2s linear}.profile__avatar-edit:hover{background:rgba(0,0,0,.8) url(a086f758840ae814ecde.svg) 50% /26px no-repeat;cursor:pointer;outline:1px solid #000}
 .profile__title{color:#fff;font-size:42px;font-style:normal;font-weight:500;line-height:48px;margin:0 0 10px;max-width:500px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:950px){.profile__title{font-size:30px;max-width:400px}}@media screen and (max-width:850px){.profile__title{max-width:350px}}@media screen and (max-width:730px){.profile__title{max-width:300px}}@media screen and (max-width:680px){.profile__title{margin:22.25px 0 14px}}@media screen and (max-width:425px){.profile__title{font-size:27px;line-height:33px;margin:24.25px 0 8px 33px;max-width:210px;text-align:center}}
 .profile__subtitle{color:#fff;font-family:Inter;font-size:18px;font-style:normal;font-weight:400;line-height:22px;margin:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:900px){.profile__subtitle{max-width:350px}}@media screen and (max-width:730px){.profile__subtitle{max-width:300px}}@media screen and (max-width:680px){.profile__subtitle{text-align:center}}@media screen and (max-width:425px){.profile__subtitle{font-size:14px;line-height:17px;margin-left:38px;max-width:200px}}
 .profile__data{max-width:500px}
@@ -18,8 +19,10 @@
 .element__img{border-radius:10px 10px 0 0;cursor:pointer;height:282px;vertical-align:top;width:100%}
 .element__caption{background-color:#fff;color:#000;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .element__like{background:url(87ed371465c7a6a1cd01.svg) 50%;border:0;height:19px;width:22px}.element__like:hover{cursor:pointer;opacity:.5}
+.element__counter{color:#000;font-size:13px;font-style:normal;font-weight:400;line-height:16px;margin:0;text-align:center}
 .element__like_active{background-image:url(fe17a515669479b1e649.svg)}
-.element__delete{background:url(823b0cf1b0b7e9cb7cad.svg) 50%;border:0;cursor:pointer;height:19px;position:absolute;right:20px;top:20px;width:18px}.element__delete:hover{opacity:.6}
+.element__delete{background:url(823b0cf1b0b7e9cb7cad.svg) 50%;border:0;cursor:pointer;display:none;height:19px;position:absolute;right:20px;top:20px;width:18px}.element__delete:hover{opacity:.6}
+.element__delete_active{display:block}
 .modal{align-items:center;background:rgba(0,0,0,.5);display:flex;height:100vh;justify-content:center;left:0;margin:0;opacity:0;padding:0;position:fixed;top:0;transition:visibility .4s,opacity .4s linear;visibility:hidden;width:100%}
 .modal_active{opacity:1;visibility:visible}
 .modal__inner{background:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);box-sizing:border-box;margin:0 auto;padding:34px 36px 37px;position:relative;width:430px;z-index:10}@media screen and (max-width:530px){.modal__inner{max-width:282px;padding:25px 22px}}
@@ -35,5 +38,6 @@
 .modal__caption{bottom:-30px;color:#fff;font-size:12px;font-style:normal;font-weight:400;left:0;line-height:15px;position:absolute}
 .modal-img{background:rgba(0,0,0,.9)}
 .modal-img__container{margin:0 auto;position:relative;z-index:2}
+.modal-confirm{background:rgba(0,0,0,.5)}
 .footer{color:#545454;font-size:18px;font-style:normal;font-weight:400;line-height:22px;padding-bottom:60px}@media screen and (max-width:425px){.footer{font-size:14px;line-height:17px;margin:0 auto;padding-bottom:36px;width:88.13%}}
 
